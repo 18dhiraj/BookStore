@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@1,700&display=swap');
+.bestseller{
+    font-family: 'Merriweather', serif;
+}
+
+
+.images{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+@media screen and (max-width: 568px) {
+    
+    .images{
+        justify-content: center;
+        width: 100%
+    }
+
+    .slider__image{
+        width: 100vw;
+        display: block;
+
+    }
+
+    .slider__text{
+        display: none;
+    }
+}

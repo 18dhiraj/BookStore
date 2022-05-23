@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@1,900&display=swap');
+#logo{
+    font-family: 'Merriweather', serif;
+}
+.navham{
+    display: none;
+}
+#sidenav{
+    display: none;
+}
+
+#div{
+    display: none;
+}
+
+@media screen and (max-width: 768px){
+
+
+    .navitems{
+        display: none;
+    }
+
+    .navham{
+
+        display: block;
+    }
+
+    #sidenav{
+
+        color: rgba(88, 88, 88, 0.521);
+    }
+
+    
+}
