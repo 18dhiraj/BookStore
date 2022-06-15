@@ -238,17 +238,17 @@ function Home() {
         </button>
 
         <div
-          className="row row-cols-md-5 row-cols-sm-3 flex-nowrap my-5 mx-2 border"
+          className="row row-cols-md-2 row-cols-lg-5 row-cols-xs-1 flex-nowrap my-5 mx-2 border"
           style={{ position: "relative", overflow: "hidden" }}
         >
           {Books.map((elem) => {
             return (
-              <>
+              
                 <div
-                  key={elem.rank}
+                key={elem.rank}
                   className="books d-flex justify-content-center flex-column align-items-center my-4 p-0 "
                   style={{ transition: "all 0.7s ease-in-out" }}
-                >
+                 >
                   <div className="image " style={{ height: "40vh" }}>
                     <img className="h-100" src={elem.book_image} alt={elem.title} />
                   </div>
@@ -261,7 +261,7 @@ function Home() {
                     </div>
                   </div>
                 </div>
-              </>
+              
             );
           })}
         </div>

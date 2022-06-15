@@ -18,16 +18,16 @@ function Contact(){
 
     return(
         <>
-        <div className='' style={{height: "90vh"}}>
+        <div className='' style={{height: "90vh", position : "relative"}}>
             <div className=' h-50 bg-success'><img src='' alt=''/></div>
             <div className='h-50 bg-danger'><img src='' alt=''/></div>
             <div className='w-50 bg-primary py-5 d-flex align-items-center flex-column' style={{position: "absolute", top:"50%",left:"50%", transform: "translatey(-50%)"}}>
-                <form  ref={form} onSubmit={submit} >
-                <input className='my-2 w-75 border rounded' type="text" name='from_name' placeholder="First Name"/><br/>
-                <input className='my-2 w-75 border rounded' type="email" name='email' placeholder="Email"/><br/>
+                <form className=' w-50' ref={form} onSubmit={submit} >
+                <input className='my-2 w-100 border rounded' type="text" name='from_name' placeholder="First Name"/><br/>
+                <input className='my-2 w-100 border rounded' type="email" name='email' placeholder="Email"/><br/>
 
-                <textarea className='my-2 w-75 border rounded' type="text" name='message' placeholder= "message"></textarea><br/>
-                <input  className='my-3 w-75 border rounded' type="submit" />
+                <textarea className='my-2 w-100 border rounded' type="text" name='message' placeholder= "message" style={{resize : "none"}}></textarea><br/>
+                <input  className='my-3 w-100 border rounded' type="submit" />
                 </form>
             </div>
         </div>

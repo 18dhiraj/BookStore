@@ -60,7 +60,9 @@ function Section() {
   function search() {
     let card = document.getElementsByClassName("card");
 
+    let count = 0
     for (let i = 0; i < card.length; i++) {
+
       let title = document
         .getElementsByClassName("card")
         [i].getElementsByClassName("title")[0];
@@ -69,12 +71,36 @@ function Section() {
         let textval = title.innerHTML || title.textContent;
         if (textval.toUpperCase().indexOf(value.toUpperCase()) === -1) {
           card[i].style.display = "none";
+     
+
         } else {
           card[i].style.display = "";
+          count ++
         }
       }
+      
+
+      
     }
+    if(count !== 0){
+      let noresult = document.getElementById("noresult")
+      noresult.style.display = 'none'
+
+    }
+    else{
+
+      let noresult = document.getElementById("noresult")
+      noresult.style.display = 'block'
+    }
+
   }
+
+  const reload = () =>{
+
+    window.location.reload()
+  }
+
+
 
   /// Section component which is returned or displayed
 
@@ -93,14 +119,14 @@ function Section() {
       </div>
       <div
         className="mx-5 row row-cols-xs-1 row row-cols-lg-5 row row-cols-md-3 "
-        style={{}}
-
+    
       >
+        <div id="noresult" style={{display: "none"}}><button onClick={reload} className="border mx-2 py-1 px-2 rounded">Back </button>No Result Found</div>
         {Books.map((element) => {
           return (
             <div
               key={element.rank}
-              className=" card border my-3 shadow"
+              className="  p-0 border  shadow"
               style={{ height: "auto"}}
              >
               <div
