@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { bookss } from "../actions";
 import "./home.css";
 function Home() {
-  const [Books, setBooks] = useState([]);
+
+  const data = useSelector((state) => state.allbooks.books)
+
+  // const [Books, setBooks] = useState(data);
+
+  const dispatch = useDispatch();
 
   window.onload = function slider() {
     let first = document.getElementsByClassName("first")[0];
@@ -48,7 +55,9 @@ function Home() {
       let fetchdata = await fetch(url);
 
       let jsondata = await fetchdata.json();
-      setBooks(jsondata.results.books);
+
+      dispatch(bookss(jsondata.results.books))
+      // setBooks(jsondata.results.books);
     }
     fetching();
   }, []);
@@ -241,27 +250,27 @@ function Home() {
           className="row row-cols-md-2 row-cols-lg-5 row-cols-xs-1 flex-nowrap my-5 mx-2 border"
           style={{ position: "relative", overflow: "hidden" }}
         >
-          {Books.map((elem) => {
+          {data.map((elem) => {
             return (
-              
-                <div
+
+              <div
                 key={elem.rank}
-                  className="books d-flex justify-content-center flex-column align-items-center my-4 p-0 "
-                  style={{ transition: "all 0.7s ease-in-out" }}
-                 >
-                  <div className="image " style={{ height: "40vh" }}>
-                    <img className="h-100" src={elem.book_image} alt={elem.title} />
+                className="books d-flex justify-content-center flex-column align-items-center my-4 p-0 "
+                style={{ transition: "all 0.7s ease-in-out" }}
+              >
+                <div className="image " style={{ height: "40vh" }}>
+                  <img className="h-100" src={elem.book_image} alt={elem.title} />
+                </div>
+                <div className="details my-2">
+                  <div style={{ fontSize: "0.8rem" }}>
+                    Title : {elem.title}
                   </div>
-                  <div className="details my-2">
-                    <div style={{ fontSize: "0.8rem" }}>
-                      Title : {elem.title}
-                    </div>
-                    <div style={{ fontSize: "0.8rem" }}>
-                      Author :{elem.author}
-                    </div>
+                  <div style={{ fontSize: "0.8rem" }}>
+                    Author :{elem.author}
                   </div>
                 </div>
-              
+              </div>
+
             );
           })}
         </div>

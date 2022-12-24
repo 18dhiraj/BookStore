@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addcart, detailes } from "../actions/index";
 import { Link } from "react-router-dom";
 
@@ -10,23 +10,29 @@ function Section() {
   const [Books, setBooks] = useState([]);
   const [value, setValue] = useState("");
 
+  const books = useSelector((state) => state.allbooks.books);
+
+  useEffect(() => {
+    setBooks(books);
+
+  }, [])
 
   //useEffect hook to render things on page
 
-  useEffect(() => {
-    async function fetching() {
-      console.log("fetching");
-      let url =
-        "https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=Yzc411QAqyY3OZnSYomEjLcYVtP0lV2H";
+  // useEffect(() => {
+  //   async function fetching() {
+  //     console.log("fetching");
+  //     let url =
+  //       "https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=Yzc411QAqyY3OZnSYomEjLcYVtP0lV2H&pageSize=5";
 
-      let fetchdata = await fetch(url);
+  //     let fetchdata = await fetch(url);
 
-      let jsondata = await fetchdata.json();
-      setBooks(jsondata.results.books);
+  //     let jsondata = await fetchdata.json();
+  //     setBooks(jsondata.results.books);
 
-    }
-    fetching();
-  }, []);
+  //   }
+  //   fetching();
+  // }, []);
 
 
 
@@ -34,7 +40,7 @@ function Section() {
 
   const sedetailes = (e) => {
     let data = e;
-      dispatch(detailes(data));
+    dispatch(detailes(data));
 
 
   };
@@ -65,29 +71,29 @@ function Section() {
 
       let title = document
         .getElementsByClassName("card")
-        [i].getElementsByClassName("title")[0];
+      [i].getElementsByClassName("title")[0];
 
       if (title) {
         let textval = title.innerHTML || title.textContent;
         if (textval.toUpperCase().indexOf(value.toUpperCase()) === -1) {
           card[i].style.display = "none";
-     
+
 
         } else {
           card[i].style.display = "";
-          count ++
+          count++
         }
       }
-      
 
-      
+
+
     }
-    if(count !== 0){
+    if (count !== 0) {
       let noresult = document.getElementById("noresult")
       noresult.style.display = 'none'
 
     }
-    else{
+    else {
 
       let noresult = document.getElementById("noresult")
       noresult.style.display = 'block'
@@ -95,7 +101,7 @@ function Section() {
 
   }
 
-  const reload = () =>{
+  const reload = () => {
 
     window.location.reload()
   }
@@ -118,23 +124,23 @@ function Section() {
         </button>
       </div>
       <div
-        className="mx-5 row row-cols-xs-1 row row-cols-lg-5 row row-cols-md-3 "
-    
+        className=" mx-5 row row-cols-xs-1 row row-cols-lg-5 row row-cols-md-3 "
+      // style={{ placeContent: "center" }}
       >
-        <div id="noresult" style={{display: "none"}}><button onClick={reload} className="border mx-2 py-1 px-2 rounded">Back </button>No Result Found</div>
+        <div id="noresult" style={{ display: "none" }}><button onClick={reload} className="border mx-2 py-1 px-2 rounded">Back </button>No Result Found</div>
         {Books.map((element) => {
           return (
             <div
               key={element.rank}
-              className="  p-0 border  shadow"
-              style={{ height: "auto"}}
-             >
+              className=" p-0 border shadow "
+              style={{ height: "fit-content", width: "17vw" }}
+            >
               <div
                 className=" d-flex justify-content-center  "
-                style={{ height: "335px", overflow: "hidden" }}
+                style={{ height: "305px", overflow: "hidden" }}
               >
                 <img
-                  className=" h-100" 
+                  className=" h-100"
                   src={element.book_image}
                   alt="Book Img"
                 />

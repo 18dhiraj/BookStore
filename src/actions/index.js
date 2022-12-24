@@ -1,4 +1,13 @@
-export  const addcart = (data)=>{
+export const bookss = (data) => {
+
+    return {
+        type: "ALL_BOOKS",
+        payload: data
+    }
+}
+
+export const addcart = (data) => {
+
 
     return {
         type: "ADD__CART",
@@ -12,9 +21,9 @@ export  const addcart = (data)=>{
 }
 
 
-export const detailes = (data)=>{
+export const detailes = (data) => {
 
-    return{
+    return {
         type: "DETAILES",
         payload: {
             id: new Date().getDate().toString(),
