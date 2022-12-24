@@ -9,6 +9,8 @@ function Section() {
   const dispatch = useDispatch();
   const [Books, setBooks] = useState([]);
   const [value, setValue] = useState("");
+  const [err, setErr] = useState(false);
+
 
   const books = useSelector((state) => state.allbooks.books);
 
@@ -16,25 +18,6 @@ function Section() {
     setBooks(books);
 
   }, [])
-
-  //useEffect hook to render things on page
-
-  // useEffect(() => {
-  //   async function fetching() {
-  //     console.log("fetching");
-  //     let url =
-  //       "https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=Yzc411QAqyY3OZnSYomEjLcYVtP0lV2H&pageSize=5";
-
-  //     let fetchdata = await fetch(url);
-
-  //     let jsondata = await fetchdata.json();
-  //     setBooks(jsondata.results.books);
-
-  //   }
-  //   fetching();
-  // }, []);
-
-
 
   //  for Dispactch items to store
 
@@ -55,49 +38,59 @@ function Section() {
 
   //setting the value of input with useState
 
-  function setval() {
-    let val = document.getElementsByTagName("input")[0].value;
 
-    setValue(val);
-  }
 
   // Logic for search books
 
-  function search() {
-    let card = document.getElementsByClassName("card");
-
-    let count = 0
-    for (let i = 0; i < card.length; i++) {
-
-      let title = document
-        .getElementsByClassName("card")
-      [i].getElementsByClassName("title")[0];
-
-      if (title) {
-        let textval = title.innerHTML || title.textContent;
-        if (textval.toUpperCase().indexOf(value.toUpperCase()) === -1) {
-          card[i].style.display = "none";
-
-
-        } else {
-          card[i].style.display = "";
-          count++
-        }
+  const search = function () {
+    let searched_text = value.toUpperCase();
+    let searched_data = books.filter((item) => {
+      if (item.title.toUpperCase().includes(searched_text) || item.author.toUpperCase().includes(searched_text)) {
+        return item
       }
+    })
 
+    if (searched_data.length) {
+      setBooks(searched_data);
 
-
+    } else {
+      setBooks([])
+      setErr(true)
     }
-    if (count !== 0) {
-      let noresult = document.getElementById("noresult")
-      noresult.style.display = 'none'
 
-    }
-    else {
 
-      let noresult = document.getElementById("noresult")
-      noresult.style.display = 'block'
-    }
+
+    // let card = document.getElementsByClassName("card");
+
+    // let count = 0
+    // for (let i = 0; i < card.length; i++) {
+
+    //   let title = document
+    //     .getElementsByClassName("card")
+    //   [i].getElementsByClassName("title")[0];
+
+    //   if (title) {
+    //     let textval = title.innerHTML || title.textContent;
+    //     if (textval.toUpperCase().indexOf(value.toUpperCase()) === -1) {
+    //       card[i].style.display = "none";
+
+
+    //     } else {
+    //       card[i].style.display = "";
+    //       count++
+    //     }
+    //   }
+    // }
+    // if (count !== 0) {
+    //   let noresult = document.getElementById("noresult")
+    //   noresult.style.display = 'none'
+
+    // }
+    // else {
+
+    //   let noresult = document.getElementById("noresult")
+    //   noresult.style.display = 'block'
+    // }
 
   }
 
@@ -114,7 +107,7 @@ function Section() {
     <>
       <div className=" d-flex justify-content-end m-3">
         <input
-          onChange={setval}
+          onChange={(e) => setValue(e.target.value)}
           className="w-50 mx-2"
           type="text"
           value={value}
@@ -123,17 +116,19 @@ function Section() {
           Search
         </button>
       </div>
-      <div
-        className=" mx-5 row row-cols-xs-1 row row-cols-lg-5 row row-cols-md-3 "
+      {err && <div id="noresult" style={{ display: "none" }}><button onClick={reload} className="border mx-2 py-1 px-2 rounded">Back </button>No Result Found</div>}
+      {/* <div
+        className=" mx-5 "
       // style={{ placeContent: "center" }}
-      >
-        <div id="noresult" style={{ display: "none" }}><button onClick={reload} className="border mx-2 py-1 px-2 rounded">Back </button>No Result Found</div>
+      > */}
+      <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evenly" }}>
+
         {Books.map((element) => {
           return (
             <div
               key={element.rank}
-              className=" p-0 border shadow "
-              style={{ height: "fit-content", width: "17vw" }}
+              className=" border shadow mx-2 my-1"
+              style={{ height: "fit-content", width: "200px" }}
             >
               <div
                 className=" d-flex justify-content-center  "
@@ -189,6 +184,8 @@ function Section() {
           );
         })}
       </div>
+
+      {/* </div> */}
     </>
   );
 }
