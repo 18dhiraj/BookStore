@@ -54,7 +54,6 @@ function Home() {
     let jsondata = await fetchdata.json();
 
     dispatch(bookss(jsondata.results.books))
-    // setBooks(jsondata.results.books);
   }
 
   useEffect(() => {
