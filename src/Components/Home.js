@@ -47,19 +47,24 @@ function Home() {
     }, 3000);
   };
 
+  async function fetching() {
+    let url =
+      "https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=Yzc411QAqyY3OZnSYomEjLcYVtP0lV2H";
+
+    let fetchdata = await fetch(url);
+
+    let jsondata = await fetchdata.json();
+
+    dispatch(bookss(jsondata.results.books))
+    // setBooks(jsondata.results.books);
+  }
+
   useEffect(() => {
-    async function fetching() {
-      let url =
-        "https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=Yzc411QAqyY3OZnSYomEjLcYVtP0lV2H";
 
-      let fetchdata = await fetch(url);
+    if (!data.length) {
+      fetching();
 
-      let jsondata = await fetchdata.json();
-
-      dispatch(bookss(jsondata.results.books))
-      // setBooks(jsondata.results.books);
     }
-    fetching();
   }, []);
 
   let books = document.getElementsByClassName("books");
