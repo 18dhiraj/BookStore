@@ -6,8 +6,6 @@ function Home() {
 
   const data = useSelector((state) => state.allbooks.books)
 
-  // const [Books, setBooks] = useState(data);
-
   const dispatch = useDispatch();
 
   window.onload = function slider() {
