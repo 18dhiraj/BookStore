@@ -10,15 +10,11 @@ function Section() {
   const [Books, setBooks] = useState([]);
   const [value, setValue] = useState("");
   const [err, setErr] = useState(false);
-  const [searchedData, setSearchedData] = useState([false]);
-
-
 
   const books = useSelector((state) => state.allbooks.books);
 
   useEffect(() => {
     setBooks(books);
-
   }, [])
 
   //  for Dispactch items to store
@@ -27,19 +23,14 @@ function Section() {
     let data = e;
     dispatch(detailes(data));
 
-
   };
 
   const setdata = (e) => {
     let data = e;
     dispatch(addcart(data));
-
     alert("Added to cart")
 
   };
-
-  //setting the value of input with useState
-
 
 
   // Logic for search books
@@ -63,12 +54,6 @@ function Section() {
     }
 
   }
-
-  const reload = () => {
-    window.location.reload()
-  }
-
-
 
   /// Section component which is returned or displayed
 
