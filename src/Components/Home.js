@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { bookss } from "../actions";
 import "./home.css";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
 function Home() {
 
   const data = useSelector((state) => state.allbooks.books)
@@ -121,99 +123,35 @@ function Home() {
       >
         Best Sellers
       </div>
-      <div
-        className=" bg-primary bg-opacity-50 d-flex align-items-center"
-        style={{ height: "50vh" }}
+      <Carousel
+        autoPlay={true}
+        infiniteLoop={true}
+        autoFocus={true}
       >
-        <div className=" first images w-100 " style={{ height: "90%" }}>
-          <div className=" slider__image d-flex justify-content-center w-50 h-100 ">
-            <img
-              className="h-100 "
-              src="https://storage.googleapis.com/du-prd/books/images/9780316499378.jpg"
-              alt="first"
-            />
-          </div>
+        {data.map((item) => {
+          return (
+            <>
+              <div style={{ display: "grid", gridTemplateRows: "1fr 2fr" }}>
+                <div style={{ maxHeight: "400px", display: "flex", justifyContent: "space-around", alignItems: "center" }}>
+                  <div>
+                    <img src={item.book_image} style={{ width: "200px" }} />
+                  </div>
+                  <div>
+                    <span>
+                      {item.author}
+                    </span>
+                    <p>{item.description}</p>
+                  </div>
+                  {/* <p className="legend">{item.author}</p> */}
+                </div>
+              </div>
+            </>
+          )
+        })
 
-          <div className="slider__text w-50 ">
-            <div className=" bestseller text-start fw-bold fs-3">
-              22 SECONDS
-            </div>{" "}
-            <br />
-            <div className="text-start fs-4 text-muted">
-              {" "}
-              The 22nd book in the Women’s Murder Club series. Lindsay Boxer
-              returns as word gets around about a shipment of drugs and weapons.
-            </div>
-          </div>
-        </div>
+        }
+      </Carousel>
 
-        <div className=" second images d-none w-100 " style={{ height: "90%" }}>
-          <div className=" slider__image w-50 h-100 d-flex justify-content-center">
-            <img
-              className="h-100"
-              src="https://storage.googleapis.com/du-prd/books/images/9781501133572.jpg"
-              alt="first"
-            />
-          </div>
-
-          <div className="slider__text w-50 ">
-            <div className=" bestseller text-start fs-3 fw-bold ">
-              THE SUMMER PLACE
-            </div>{" "}
-            <br />
-            <div className="text-start fs-4 text-muted">
-              {" "}
-              A wedding between Ruby Danhauser and her pandemic boyfriend at a
-              family beach house in Cape Cod brings to light family secrets.
-            </div>
-          </div>
-        </div>
-
-        <div className=" third images d-none  w-100" style={{ height: "90%" }}>
-          <div className="slider__image  w-50 h-100 d-flex justify-content-center ">
-            <img
-              className="h-100"
-              src="https://storage.googleapis.com/du-prd/books/images/9781538719770.jpg"
-              alt="first"
-            />
-          </div>
-
-          <div className="slider__text w-50 ">
-            <div className=" bestseller text-start fs-3 fw-bold ">
-              DREAM TOWN
-            </div>{" "}
-            <br />
-            <div className="text-start fs-4 text-muted">
-              {" "}
-              The third book in the Archer series. Archer, Dash and Callahan
-              search for a missing screenwriter who had a dead body turn up in
-              her home.
-            </div>
-          </div>
-        </div>
-
-        <div className=" forth images d-none w-100 " style={{ height: "90%" }}>
-          <div className=" slider__image w-50 h-100 d-flex justify-content-center ">
-            <img
-              className="h-100"
-              src="https://storage.googleapis.com/du-prd/books/images/9780759554344.jpg"
-              alt="first"
-            />
-          </div>
-
-          <div className="slider__text w-50 ">
-            <div className=" bestseller text-start fs-3 fw-bold ">
-              RUN, ROSE, RUN
-            </div>{" "}
-            <br />
-            <div className="text-start fs-4 text-muted">
-              {" "}
-              A singer-songwriter goes to Nashville seeking stardom but is
-              followed by her dark past.
-            </div>
-          </div>
-        </div>
-      </div>
       <div style={{ position: "relative", width: "100%" }}>
         <button
           onClick={leftclick}
