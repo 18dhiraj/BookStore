@@ -131,8 +131,8 @@ function Home() {
         {data.map((item) => {
           return (
             <>
-              <div style={{ display: "grid", gridTemplateRows: "1fr 2fr" }}>
-                <div style={{ maxHeight: "400px", display: "flex", justifyContent: "space-around", alignItems: "center" }}>
+              <div>
+                <div style={{ display: "flex", justifyContent: "space-around", alignItems: "center" }}>
                   <div>
                     <img src={item.book_image} style={{ width: "200px" }} />
                   </div>
@@ -142,7 +142,6 @@ function Home() {
                     </span>
                     <p>{item.description}</p>
                   </div>
-                  {/* <p className="legend">{item.author}</p> */}
                 </div>
               </div>
             </>

@@ -2,9 +2,7 @@ import React from 'react'
 import { Link } from "react-router-dom";
 import "./navbar.css"
 
-
 function Navbar() {
-
 
     const hide = () => {
         let div = document.getElementById("div")
@@ -13,7 +11,6 @@ function Navbar() {
         div.style.display = "none"
         sidenav.style.display = "none"
         document.body.style.overflow = "auto";
-
     }
 
     const show = () => {
@@ -23,9 +20,6 @@ function Navbar() {
         div.style.display = "block"
         sidenav.style.display = "block"
         document.body.style.overflow = "hidden";
-
-
-
     }
     return <>
 
@@ -49,6 +43,8 @@ function Navbar() {
                         <div className='p-3 justify-self-between'><Link to='/cart' className='text-light text-decoration-none'>Cart</Link></div>
                     </div>
                 </div>
+
+                {/* for responsive navbar */}
                 <div onClick={show} className=' navham align-self-center text-white p-3 mx-3 '>&#9776;</div>
                 <div id='sidenav' className='  position-absolute top-0 end-0 w-50 bg-secondary ' style={{ height: "100vh", transition: "all 0.4s ease-in-out" }}>
                     <div onClick={hide} id="sideham" className='position-relative m-3 fs-6 text-white'>&#9776;</div>

@@ -1,8 +1,8 @@
 
 import './App.css';
 import Navbar from './Components/Navbar';
-import Section from './Components/Section';
-import Book from './Components/Book';
+import Books from './Components/Books';
+import Cart from './Components/Cart';
 import Home from './Components/Home';
 
 import {
@@ -11,7 +11,7 @@ import {
   Route,
 } from "react-router-dom";
 import Contact from './Components/Contact';
-import Full from './Components/Full';
+import Details from './Components/Details';
 function App() {
   return (
     <div className="App">
@@ -19,10 +19,10 @@ function App() {
       <Navbar/>
       <Routes>
       <Route path='/' element={<Home/>}/>
-      <Route path='/books' element={<Section/>}/>
-      <Route path='/cart' element={<Book/>}/>
+      <Route path='/books' element={<Books/>}/>
+      <Route path='/cart' element={<Cart/>}/>
       <Route path='/contact' element={<Contact/>}/>
-      <Route exact path='/detailes' element={<Full/>}/>
+      <Route exact path='/detailes' element={<Details/>}/>
       </Routes>
       </BrowserRouter>
 

@@ -3,13 +3,11 @@ import { useSelector } from 'react-redux'
 import { useDispatch } from "react-redux";
 import { addcart } from "../actions/index";
 import { Link } from "react-router-dom";
-import "./full.css"
+import "./Details.css"
 export default function Full() {
   const dispatch = useDispatch();
 
     const list = useSelector((state)=>state.detailes.list)
-
-
     const setdata = (e) => {
         let data = e;
         dispatch(addcart(data));
