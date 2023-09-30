@@ -27,7 +27,7 @@ function Contact(){
                 <input className='my-2 p-2 fs-6 w-100 border rounded' type="email" name='email' placeholder="Email"/><br/>
 
                 <textarea className='my-2 fs-6 p-2 w-100 border rounded' type="text" name='message' placeholder= "message" style={{resize : "none"}}></textarea><br/>
-                <input  className='my-3 p-2 w-100 border rounded btn btn-danger	' type="Submit" />
+                <input  className='my-3 p-2 w-100  rounded btn btn-danger	' type="Submit form" />
                 </form>
             </div>
         </div>
